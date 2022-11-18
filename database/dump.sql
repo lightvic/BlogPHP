@@ -1,7 +1,7 @@
-CREATE DATABASE IF NOT EXISTS `db_blog_novembre` 
+CREATE DATABASE IF NOT EXISTS `data` 
 CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-use db_blog_novembre;
+use data;
 
 CREATE TABLE IF NOT EXISTS `user` (
 	`id` INT NOT NULL AUTO_INCREMENT,
