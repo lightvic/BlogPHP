@@ -24,7 +24,7 @@ class SecurityController extends AbstractController
 
         if ($user->passwordMatch($formPwd)) {
 
-            $this->render("user/showUsers.php", [
+            $this->render("logged.php", [
                 "message" => "je suis un message"
             ],
                 "titre de la page");

@@ -12,8 +12,8 @@ class PostController extends AbstractController
     #[Route('/', name: "homepage", methods: ["GET"])]
     public function home()
     {
-        $manger = new PostManager(new PDOFactory());
-        $posts = $manger->getAllPosts();
+        $manager = new PostManager(new PDOFactory());
+        $posts = $manager->getAllPosts();
 
         $this->render("home.php", [
             "posts" => $posts,
@@ -33,4 +33,5 @@ class PostController extends AbstractController
     {
         var_dump($id, $truc);
     }
+    
 }
