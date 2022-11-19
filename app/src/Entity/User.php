@@ -8,7 +8,7 @@ use App\Interfaces\UserInterface;
 class User extends BaseEntity implements UserInterface, PasswordProtectedInterface
 {
     private ?int $id;
-    private string $username;
+    private string $nickname;
     private string $password;
     private string $email;
     private string $firstName;
@@ -37,18 +37,18 @@ class User extends BaseEntity implements UserInterface, PasswordProtectedInterfa
     /**
      * @return string
      */
-    public function getUsername(): string
+    public function getNickname(): string
     {
-        return $this->username;
+        return $this->nickname;
     }
 
     /**
-     * @param string $username
+     * @param string $nickname
      * @return User
      */
-    public function setUsername(string $username): User
+    public function setNickname(string $nickname): User
     {
-        $this->username = $username;
+        $this->nickname = $nickname;
         return $this;
     }
 
