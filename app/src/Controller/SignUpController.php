@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\SignUp;
 use App\Factory\PDOFactory;
 use App\Manager\PostManager;
 use App\Manager\SignUpManager;
@@ -24,14 +25,25 @@ class SignUpController extends AbstractController{
     // je lui demande d'insérer le nouveau post
     // Je redirige vers la home page
 
-        $NewUser = array(
+        $NewUser = [
             "email" => $_POST["email"],
             "nickname" => $_POST["nickname"],
-            "password" => $_POST["pasword"],
-            "confirm_password" => $_POST["confirm_password"],
-        );
+            "password" => hash('ripemd160',$_POST["password"]),
+            "confirm_password" => hash('ripemd160',$_POST["confirmPassword"]),
+        ];
 
-        $signupManager = new SignUpManager(new PDOFactory());
+
+        if ($NewUser["password"] == $NewUser["confirm_password"]){
+
+            $sign_up = new SignUp($NewUser);
+            $manager = new SignUpManager (new PDOFactory());
+            
+            $signup = $manager->insertUser($sign_up);
+            header("Location: /");
+            exit;
+        }
+        else{
+            $this->home();
+        }
     }
 }
-

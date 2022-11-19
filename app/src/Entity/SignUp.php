@@ -12,17 +12,19 @@ class SignUp extends BaseEntity{
     {
         return $this->nickname;
     }
-    public function setNickname(){
-        $this->nickname = nickname;
+    public function setNickname(string $nickname): SignUp
+    {
+        $this->nickname = $nickname;
         return $this;
     }
 
     public function getEmail() : string
     {
-        return $this->password;
+        return $this->email;
     }
-    public function setEmail(){
-        $this->nickname = filter_input(INPUT_POST, "email");
+    public function setEmail(string $email): SignUp
+    {
+        $this->email = $email;
         return $this;
     }
 
@@ -31,17 +33,19 @@ class SignUp extends BaseEntity{
     {
         return $this->password;
     }
-    public function setPassword(){
-        $this->password = hash('ripemd160',filter_input(INPUT_POST, "password"));
+    public function setPassword(string $password): SignUp
+    {
+        $this->password = $password;
         return $this;
     }
 
     public function getConfirmPassword() : string
     {
-        return $this->password;
+        return $this->confirm_password;
     }
-    public function setConfirmPassword(){
-        $this->nickname = filter_input(INPUT_POST, "confirmPassword");
+    public function setConfirmPassword(string $confirm_password): SignUp
+    {
+        $this->confirm_password = $confirm_password;
         return $this;
     }
 }
