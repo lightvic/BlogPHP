@@ -8,14 +8,23 @@ use App\Route\Route;
 
 class SecurityController extends AbstractController
 {
-    #[Route('/login', name: "login", methods: ["POST"])]
+
+    #[Route('/login', name: "login")]
+
+    public function home()
+    {
+        $this->render("login.php", []);
+    }
+    #[Route('/log', name: "login")]
     public function login()
     {
-        $formUsername = $_POST['username'] = "toto";
-        $formPwd = $_POST['password'] = "toto";
+        $user = [
+            "nickname"=>$_POST["nickname"],
+            "password"=>hash('ripemd160',$_POST["password"])
+        ];
 
         $userManager = new UserManager(new PDOFactory());
-        $user = $userManager->getByUsername($formUsername);
+        $user = $userManager->getByUsername($user["nickname"]);
 
         if (!$user) {
             header("Location: /?error=notfound");
@@ -30,7 +39,7 @@ class SecurityController extends AbstractController
                 "titre de la page");
         }
 
-        header("Location: /?error=notfound");
-        exit;
-    }
+    //     header("Location: /?error=notfound");
+    //     exit;
+     }
 }

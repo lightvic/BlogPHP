@@ -2,19 +2,14 @@
 
 namespace App\Entity;
 
-use App\Interfaces\PasswordProtectedInterface;
-use App\Interfaces\UserInterface;
 
-class User extends BaseEntity implements UserInterface, PasswordProtectedInterface
+class User extends BaseEntity
 {
     private ?int $id;
     private string $nickname;
     private string $password;
     private string $email;
-    private string $firstName;
-    private string $lastName;
-    private ?string $gender;
-    private array $roles = [];
+    private string $admin;
 
     /**
      * @return int
@@ -70,73 +65,14 @@ class User extends BaseEntity implements UserInterface, PasswordProtectedInterfa
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getFirstName(): string
+    public function getPassword(): string
     {
-        return $this->firstName;
+        return $this->password;
     }
 
-    /**
-     * @param string $firstName
-     * @return User
-     */
-    public function setFirstName(string $firstName): User
+    public function setPassword(string $password): User
     {
-        $this->firstName = $firstName;
+        $this->password = $password;
         return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLastName(): string
-    {
-        return $this->lastName;
-    }
-
-    /**
-     * @param string $lastName
-     * @return User
-     */
-    public function setLastName(string $lastName): User
-    {
-        $this->lastName = $lastName;
-        return $this;
-    }
-
-    /**
-     * @param string $gender
-     * @return User
-     */
-    /**
-     * @return array
-     */
-    public function getRoles(): array
-    {
-        $roles = $this->roles;
-        $roles[] = "ROLE_USER";
-        return $roles;
-    }
-
-    /**
-     * @param array $roles
-     * @return User
-     */
-    public function setRoles(array $roles): User
-    {
-        $this->roles = $roles;
-        return $this;
-    }
-
-    public function getHashedPassword(): string
-    {
-        return 'coucou';
-    }
-
-    public function passwordMatch(string $plainPwd): bool
-    {
-        return true;
     }
 }

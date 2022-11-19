@@ -25,7 +25,7 @@ class UserManager extends BaseManager
 
     public function getByUsername(string $username): ?User
     {
-        $query = $this->pdo->prepare("SELECT * FROM user WHERE username = :username");
+        $query = $this->pdo->prepare("SELECT * FROM user WHERE nickname = :username");
         $query->bindValue("username", $username, \PDO::PARAM_STR);
         $query->execute();
         $data = $query->fetch(\PDO::FETCH_ASSOC);
@@ -52,7 +52,7 @@ class UserManager extends BaseManager
 
     public function insertUser(User $user)
     {
-        $query = $this->pdo->prepare("INSERT INTO user (password, username), VALUES (:password, :username)");
+        $query = $this->pdo->prepare("INSERT INTO user (password, nickname), VALUES (:password, :username)");
         $query->bindValue("password", $user->getHashedPassword(), \PDO::PARAM_STR);
         $query->bindValue("username", $user->getUsername(), \PDO::PARAM_STR);
         $query->execute();
