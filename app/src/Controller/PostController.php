@@ -7,15 +7,23 @@ use App\Entity\Post;
 use App\Manager\PostManager;
 use App\Manager\UserManager;
 use App\Route\Route;
+session_start();
 
 class PostController extends AbstractController
 {
+
+
+
     #[Route('/', name: "homepage", methods: ["GET"])]
     public function home()
     {
+        if($_SESSION==null){
+            header("Location: /login");
+            exit;
+        }
+
         $manager = new PostManager(new PDOFactory());
         $posts = $manager->getAllPosts();
-
         $this->render("home.php", [
             "posts" => $posts,
             "trucs" => "Truc qui s'afichera dans le h1 de home.php",
@@ -30,6 +38,7 @@ class PostController extends AbstractController
 		// J'appelle le manager
 		// je lui demande d'insérer le nouveau post
 		// Je redirige vers la home page
+
 		var_dump($_POST);
 		$content = $_POST["content"];
 		$user = 1;		// d'office, pour l'instant, en attendant d'avoir la connexion

@@ -7,3 +7,7 @@
 
         <input class="validate" type="submit" id="valider" value="Valider"/>
     </form>
+
+<form action="/signup" method="POST">
+    <input class="validate" type="submit" id="valider" value="Sign Up"/>
+</form>

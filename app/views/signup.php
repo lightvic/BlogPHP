@@ -13,3 +13,7 @@
         <input class="inputSign" type="password" id="confirmPassword" name="confirmPassword" placeholder="">
         <input class="validate" type="submit" id="valider" value="Valider"/>
     </form>
+
+<form action="/login" method="POST">
+    <input class="validate" type="submit" id="valider" value="Login"/>
+</form>
