@@ -24,19 +24,17 @@ class SecurityController extends AbstractController
         ];
 
         $userManager = new UserManager(new PDOFactory());
-        $user = $userManager->getByUsername($user["nickname"]);
+        $user_db = $userManager->getByUsername($user["nickname"]);
 
         if (!$user) {
             header("Location: /?error=notfound");
             exit;
         }
 
-        if ($user->passwordMatch($formPwd)) {
-
-            $this->render("logged.php", [
-                "message" => "je suis un message"
-            ],
-                "titre de la page");
+        if ($user_db->getPassword() === $user["password"]) {
+            $_SESSION["user"]=$user;
+            header("Location: /");
+            exit;
         }
 
     //     header("Location: /?error=notfound");

@@ -39,6 +39,7 @@ class SignUpController extends AbstractController{
             $manager = new SignUpManager (new PDOFactory());
             
             $signup = $manager->insertUser($sign_up);
+            $_SESSION["user"]=$NewUser;
             header("Location: /");
             exit;
         }
