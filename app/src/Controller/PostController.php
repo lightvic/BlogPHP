@@ -16,6 +16,8 @@ class PostController extends AbstractController
         $manager = new PostManager(new PDOFactory());
         $posts = $manager->getAllPosts();
 
+
+
         $this->render("home.php", [
             "posts" => $posts,
             "trucs" => "Truc qui s'afichera dans le h1 de home.php",

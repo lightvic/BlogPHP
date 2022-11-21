@@ -17,14 +17,16 @@
 </div>
 <br/>
 <h3>Zone pour afficher les posts existants</h3>
-<h3 style="color:red">Samedi, j'en serai à régler ça.</h3>
+<h3 style="color:orange">Il me reste à récupérer les auteurs (et à mettre un peu de mise en forme XD). Valentine</h3>
 <?php
 /** @var App\Entity\Post[] $posts */
 foreach ($posts as $post) {
-	$postAuthorId = $post->getUser();
-    echo $postAuthorId;
-    echo $post->getByID($postAuthorId);
-    echo $post->getContent();
+	echo("Id du post : " . $post->getId() . " - date : " . $post->getDate());
+	echo('</br>');
+	echo($post->getContent());
+	echo('</br>');
+	echo('</br>');
 }
+
 
 
