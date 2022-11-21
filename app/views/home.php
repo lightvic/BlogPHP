@@ -21,7 +21,7 @@
 <?php
 /** @var App\Entity\Post[] $posts */
 foreach ($posts as $post) {
-	echo("Id du post : " . $post->getId() . " - date : " . $post->getDate());
+	echo("Id du post : " . $post->getId() . " - date : " . $post->getDate() . " - id de l'auteur : " . $post->getUser());
 	echo('</br>');
 	echo($post->getContent());
 	echo('</br>');

@@ -12,7 +12,7 @@ class UserManager extends BaseManager
      */
     public function getAllUsers(): array
     {
-        $query = $this->pdo->query("select * from user");
+        $query = $this->pdo->query("SELECT * FROM user");
 
         $users = [];
 

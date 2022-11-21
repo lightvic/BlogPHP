@@ -4,10 +4,10 @@ namespace App\Entity;
 
 class Post extends BaseEntity
 {
-    private int $id;
-    private string $content;
-    private string $date;
-    private int $user;
+    protected int $id;
+    protected string $content;
+    protected string $date;
+    protected $user;
 
     /**
      * @return int
