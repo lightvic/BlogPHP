@@ -34,19 +34,17 @@ class PostController extends AbstractController
 	#[Route('/', name: "createNewPost", methods: ["POST"])]
 	public function createNewPost()
 	{
-		// Je crée une entité Post avec les infos de mon post
-		// J'appelle le manager
-		// je lui demande d'insérer le nouveau post
-		// Je redirige vers la home page
-
 		var_dump($_POST);
 		$content = $_POST["content"];
-		$user = 1;		// d'office, pour l'instant, en attendant d'avoir la connexion
-		$data = ['user'=>$user, 'content'=>$content];
-		var_dump($data);
-		$post = new Post($data);
-		$manager = new PostManager(new PDOFactory());
-		$newPost = $manager->insertPost($post);
+		if($content != null && $content !="")
+		{
+			$user = 1;		// d'office, pour l'instant, en attendant d'avoir la connexion
+			$data = ['user'=>$user, 'content'=>$content];
+			var_dump($data);
+			$post = new Post($data);
+			$manager = new PostManager(new PDOFactory());
+			$newPost = $manager->insertPost($post);
+		}
 		$this->home();
 	}
 
