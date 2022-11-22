@@ -24,8 +24,10 @@ class PostController extends AbstractController
 		echo "Coucou du PostController";
         $manager = new PostManager(new PDOFactory());
         $posts = $manager->getAllPosts();
+
         $userManager = new UserManager(new PDOFactory());
         $users = $userManager->getAllUsers();
+		
         $this->render("home.php", [
             "posts" => $posts,
             "users" => $users,
@@ -40,8 +42,11 @@ class PostController extends AbstractController
 		$content = $_POST["content"];
 		if($content != null && $content !="")
 		{
-			$user = 1;		// d'office, pour l'instant, en attendant d'avoir la connexion
-			$data = ['user'=>$user, 'content'=>$content];
+			$userManager = new UserManager(new PDOFactory());
+        	$user = $userManager->getByUsername($_SESSION["user"]["nickname"]);
+			$userId = $user->getId();
+
+			$data = ['user'=>$userId, 'content'=>$content];
 			var_dump($data);
 			$post = new Post($data);
 			$manager = new PostManager(new PDOFactory());
