@@ -40,6 +40,7 @@ class PostController extends AbstractController
 	public function createNewPost()
 	{
 		$content = $_POST["content"];
+<<<<<<< HEAD
 		if($content != null && $content !="")
 		{
 			$userManager = new UserManager(new PDOFactory());
@@ -52,6 +53,14 @@ class PostController extends AbstractController
 			$manager = new PostManager(new PDOFactory());
 			$newPost = $manager->insertPost($post);
 		}
+=======
+		$user = $_SESSION["user"]["id"]		// d'office, pour l'instant, en attendant d'avoir la connexion
+		$data = ['user'=>$user, 'content'=>$content];
+		var_dump($data);
+		$post = new Post($data);
+		$manager = new PostManager(new PDOFactory());
+		$newPost = $manager->insertPost($post);
+>>>>>>> origin/victo
 		$this->home();
 	}
 

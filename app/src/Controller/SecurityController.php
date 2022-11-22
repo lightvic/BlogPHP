@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Factory\PDOFactory;
 use App\Manager\UserManager;
 use App\Route\Route;
+use App\Entity\User;
 
 class SecurityController extends AbstractController
 {
@@ -32,6 +33,7 @@ class SecurityController extends AbstractController
         }
 
         if ($user_db->getPassword() === $user["password"]) {
+            $user["id"] => $user_db["id"]
             $_SESSION["user"]=$user;
             header("Location: /");
             exit;
