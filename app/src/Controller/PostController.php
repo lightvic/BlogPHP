@@ -21,11 +21,14 @@ class PostController extends AbstractController
             header("Location: /login");
             exit;
         }
-
+		echo "Coucou du PostController";
         $manager = new PostManager(new PDOFactory());
         $posts = $manager->getAllPosts();
+        $userManager = new UserManager(new PDOFactory());
+        $users = $userManager->getAllUsers();
         $this->render("home.php", [
             "posts" => $posts,
+            "users" => $users,
             "trucs" => "Truc qui s'afichera dans le h1 de home.php",
             "machin" => "2e truc qui s'affichera dans home.php"
         ], "Titre de l'onglet");
