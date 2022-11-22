@@ -34,7 +34,6 @@ class PostController extends AbstractController
 	#[Route('/', name: "createNewPost", methods: ["POST"])]
 	public function createNewPost()
 	{
-		var_dump($_POST);
 		$content = $_POST["content"];
 		if($content != null && $content !="")
 		{

@@ -1,4 +1,7 @@
 <?php /** @var App\Entity\User $user */ ?>
+<?php
+var_dump($_SESSION);
+?>
 <h1><?= $trucs; ?></h1>
 <h2><?= $machin; ?></h2>
 
