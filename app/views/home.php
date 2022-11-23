@@ -2,7 +2,7 @@
 <h1><?= $trucs; ?></h1>
 <h2><?= $machin; ?></h2>
 
-<form action="/deconnexion" method="post">
+<form action="/deconnexion" method="get">
 		<button type="submit" id="submitPublication" >Deconnexion</button>
 	</form>
 

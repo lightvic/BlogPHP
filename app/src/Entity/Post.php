@@ -75,6 +75,7 @@ class Post extends BaseEntity
      * @param int $user
      * @return Post
      */
+    
     public function setUser(int $user): Post
     {
         $this->user = $user;

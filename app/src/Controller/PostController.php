@@ -41,7 +41,7 @@ class PostController extends AbstractController
 
 		var_dump($_POST);
 		$content = $_POST["content"];
-		$user = $_SESSION["user"]["id"]		// d'office, pour l'instant, en attendant d'avoir la connexion
+		$user = $_SESSION["user"]["id"];	// d'office, pour l'instant, en attendant d'avoir la connexion
 		$data = ['user'=>$user, 'content'=>$content];
 		var_dump($data);
 		$post = new Post($data);
