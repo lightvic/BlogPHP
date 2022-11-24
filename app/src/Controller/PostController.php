@@ -28,6 +28,9 @@ class PostController extends AbstractController
         $userManager = new UserManager(new PDOFactory());
         $users = $userManager->getAllUsers();
         $admins = $userManager->getAllAdmins();
+		echo "</br>";
+		var_dump($admins);
+		echo "</br>";
 		
         $this->render("home.php", [
             "posts" => $posts,
@@ -47,7 +50,10 @@ class PostController extends AbstractController
 			$userManager = new UserManager(new PDOFactory());
         	$user = $userManager->getByUsername($_SESSION["user"]["nickname"]);
 			$userId = $user->getId();
-
+			$_SESSION["user"]["id"] = $userId;
+			$_SESSION["user"]["nickname"] = $user->getNickname();
+			$_SESSION["user"]["admin"] = $user->getAdmin();
+						
 			$data = ['user'=>$userId, 'content'=>$content];
 			var_dump($data);
 			$post = new Post($data);

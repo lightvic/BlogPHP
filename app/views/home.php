@@ -7,6 +7,9 @@ $user = $_SESSION["user"];
 <h1><?= $trucs; ?></h1>
 <h2><?= $machin; ?></h2>
 
+<form action="/deconnexion" method="post">
+	<button type="submit" id="submitPublication" >Deconnexion</button>
+</form>
 
 <h3>Zone pour créer un post</h3>
 <div id="newPublication">
@@ -33,13 +36,11 @@ foreach ($posts as $post) {
 	if($user["nickname"] === $authorNickname){
 		echo "<button type='submit'>Modifier</button>";
 	}
-	if($user["nickname"] === $authorNickname || $userIsAdmin === true){
+	if($user["nickname"] === $authorNickname || $_SESSION["user"]['admin'] === 'true'){
 		echo "<button type='submit'>Supprimer</button>";
+		// echo "<p> Le user actuel est admin ? " . $_SESSION["user"]['admin'] . "</p>";
 	}
 	echo "</div>";
 	echo "</br>";
 	echo "</br>";
 }
-
-
-

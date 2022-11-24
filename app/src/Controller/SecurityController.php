@@ -32,7 +32,13 @@ class SecurityController extends AbstractController
         }
 
         if ($user_db->getPassword() === $user["password"]) {
-            $_SESSION["user"]=$user;
+			$_SESSION["user"]=$user;
+			// 5 lignes qui suivent faites par val. Normalement, elles doivent marcher. Je vous laisse tester.
+			$userManager = new UserManager(new PDOFactory());
+        	$user = $userManager->getByUsername($_SESSION["user"]["nickname"]);
+			$_SESSION["user"]["id"] = $user->getId();
+			$_SESSION["user"]["nickname"] = $user->getNickname();
+			$_SESSION["user"]["admin"] = $user->getAdmin();
             header("Location: /");
             exit;
         }
