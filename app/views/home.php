@@ -36,13 +36,11 @@ foreach ($posts as $post) {
 	if($user["nickname"] === $authorNickname){
 		echo "<button type='submit'>Modifier</button>";
 	}
-	if($user["nickname"] === $authorNickname || $userIsAdmin === true){
+	if($user["nickname"] === $authorNickname || $_SESSION["user"]['admin'] === 'true'){
 		echo "<button type='submit'>Supprimer</button>";
+		// echo "<p> Le user actuel est admin ? " . $_SESSION["user"]['admin'] . "</p>";
 	}
 	echo "</div>";
 	echo "</br>";
 	echo "</br>";
 }
-
-
-

@@ -46,33 +46,51 @@ class User extends BaseEntity
         $this->nickname = $nickname;
         return $this;
     }
-
-    /**
-     * @return string
-     */
-    public function getEmail(): string
-    {
-        return $this->email;
-    }
-
-    /**
-     * @param string $email
-     * @return User
-     */
-    public function setEmail(string $email): User
-    {
-        $this->email = $email;
-        return $this;
-    }
-
+	
     public function getPassword(): string
     {
-        return $this->password;
+		return $this->password;
     }
-
+	
     public function setPassword(string $password): User
     {
-        $this->password = $password;
+		$this->password = $password;
         return $this;
     }
+	
+	/**
+	 * @return string
+	 */
+	public function getEmail(): string
+	{
+		return $this->email;
+	}
+	
+	/**
+	 * @param string $email
+	 * @return User
+	 */
+	public function setEmail(string $email): User
+	{
+		$this->email = $email;
+		return $this;
+	}
+	
+	/**
+	 * @return string
+	 */
+	public function getAdmin(): string
+	{
+		return $this->admin;
+	}
+	
+	/**
+	 * @param string $admin
+	 * @return User
+	 */
+	public function setAdmin(string $admin): User
+	{
+		$this->admin = $admin;
+		return $this;
+	}
 }
