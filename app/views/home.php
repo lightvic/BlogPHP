@@ -6,12 +6,9 @@ var_dump($_SESSION);
 <h1><?= $trucs; ?></h1>
 <h2><?= $machin; ?></h2>
 
-<<<<<<< HEAD
-=======
 <form action="/deconnexion" method="post">
-		<button type="submit" id="submitPublication" >Deconnexion</button>
-	</form>
->>>>>>> origin/victo
+	<button type="submit" id="submitPublication" >Deconnexion</button>
+</form>
 
 <h3>Zone pour créer un post</h3>
 <div id="newPublication">
