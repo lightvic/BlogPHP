@@ -19,6 +19,18 @@ class UserManager extends BaseManager
         }
         return $users;
     }
+    /**
+     * @return User[]
+     */
+    public function getAllAdmins(): array
+    {
+        $query = $this->pdo->query("SELECT * FROM `user` WHERE `admin` = 'true';");
+        $admins = [];
+        while ($data = $query->fetch(\PDO::FETCH_ASSOC)) {
+            $admins[] = new User($data);
+        }
+        return $admins;
+    }
 
     public function getByUsername(string $username): ?User
     {

@@ -2,6 +2,7 @@
 </br>
 <?php
 var_dump($_SESSION);
+$user = $_SESSION["user"];
 ?>
 <h1><?= $trucs; ?></h1>
 <h2><?= $machin; ?></h2>
@@ -22,12 +23,19 @@ var_dump($_SESSION);
 <?php
 /** @var App\Entity\Post[] $posts */
 foreach ($posts as $post) {
-	$userId = $post->getUser();
+	$authorId = $post->getUser();
+	$authorNickname = $users[$authorId - 1]->getNickname();
 	echo "<div id='post-" . strval($post->getId()) . "' style='border: 1px solid'>";
-	echo("Id du post : " . $post->getId() . " - id de l'auteur : " . strval($userId)); // ligne à retirer pour la suite : ne sert qu'au debugging
-	echo "<h4>Auteur du post : " . $users[$userId - 1]->getNickname() . "</h4>"; // Je dois créer une fonction qui me permet de récupérer le NOM de l'auteur d'un post
+	echo("Id du post : " . $post->getId() . " - id de l'auteur : " . strval($authorId)); // ligne à retirer pour la suite : ne sert qu'au debugging
+	echo "<h4>Auteur du post : " . $authorNickname . "</h4>"; // Je dois créer une fonction qui me permet de récupérer le NOM de l'auteur d'un post
 	echo "<div>" . $post->getContent() . "</div>";
 	echo "<div>" . $post->getDate() . "</div>";
+	if($user["nickname"] === $authorNickname){
+		echo "<button type='submit'>Modifier</button>";
+	}
+	if($user["nickname"] === $authorNickname || $userIsAdmin === true){
+		echo "<button type='submit'>Supprimer</button>";
+	}
 	echo "</div>";
 	echo "</br>";
 	echo "</br>";

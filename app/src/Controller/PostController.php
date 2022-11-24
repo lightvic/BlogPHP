@@ -27,10 +27,12 @@ class PostController extends AbstractController
 
         $userManager = new UserManager(new PDOFactory());
         $users = $userManager->getAllUsers();
+        $admins = $userManager->getAllAdmins();
 		
         $this->render("home.php", [
             "posts" => $posts,
             "users" => $users,
+            "admins" => $admins,
             "trucs" => "Truc qui s'afichera dans le h1 de home.php",
             "machin" => "2e truc qui s'affichera dans home.php"
         ], "Titre de l'onglet");
