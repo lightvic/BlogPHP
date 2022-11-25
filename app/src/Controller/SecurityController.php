@@ -33,6 +33,7 @@ class SecurityController extends AbstractController
         }
 
         if ($user_db->getPassword() === $user["password"]) {
+            $user = $user_db;
             $_SESSION["user"] = $user_db;
             header("Location: /");
             exit;

@@ -25,22 +25,28 @@ $user = $_SESSION["user"];
 <h3>Zone pour afficher les posts existants</h3>
 <?php
 /** @var App\Entity\Post[] $posts */
-foreach ($posts as $post) {
+foreach ($posts as $post):
 	$authorId = $post->getUser();
 	$authorNickname = $users[$authorId - 1]->getNickname();
-	echo "<div id='post-" . strval($post->getId()) . "' style='border: 1px solid'>";
-	echo("Id du post : " . $post->getId() . " - id de l'auteur : " . strval($authorId)); // ligne à retirer pour la suite : ne sert qu'au debugging
-	echo "<h4>Auteur du post : " . $authorNickname . "</h4>"; // Je dois créer une fonction qui me permet de récupérer le NOM de l'auteur d'un post
-	echo "<div>" . $post->getContent() . "</div>";
-	echo "<div>" . $post->getDate() . "</div>";
-	if($user["nickname"] === $authorNickname){
-		echo "<button type='submit'>Modifier</button>";
-	}
-	if($user["nickname"] === $authorNickname || $_SESSION["user"]['admin'] === 'true'){
-		echo "<button type='submit'>Supprimer</button>";
-		// echo "<p> Le user actuel est admin ? " . $_SESSION["user"]['admin'] . "</p>";
-	}
-	echo "</div>";
-	echo "</br>";
-	echo "</br>";
-}
+?>
+	<div id='post-<?= strval($post->getId()) ?>' style='border: 1px solid'>"
+	<!--  ligne à retirer pour la suite : ne sert qu'au debugging -->
+	Id du post : " <?= $post->getId() ?> - id de l'auteur :  <?= strval($authorId)?>
+	<h4>Auteur du post :  <?= $authorNickname ?> </h4> 
+	
+	<!-- Je dois créer une fonction qui me permet de récupérer le NOM de l'auteur d'un post -->
+	<div> <?= $post->getContent() ?> </div>
+	<div> <?= $post->getDate() ?> </div>
+	
+	<?php if($_SESSION["user"]["nickname"] === $authorNickname): ?>
+		<button type='submit'>Modifier</button>";
+	<?php endif ?>
+	<?php if($_SESSION["user"]["nickname"] === $authorNickname || $_SESSION["user"]['admin'] === 'true'): ?>
+		<form action="/delete/<?= $post->getId() ?>" method="POST">
+    		<input class="validate" type="submit" id="valider" value="Supprimer"/>
+		</form>
+	<?php endif ?>
+	</div>
+	</br>
+	</br>
+<?php endforeach ?>

@@ -72,17 +72,21 @@ class PostController extends AbstractController
 		}
 		$this->home();
 	}
-
+    #[Route('/post/delete/{id}', name: "delete", methods: ["GET"])]
+    public function showOne($id, $truc, $machin)
+    {
+        var_dump($id, $truc);
+    }
     /**
      * @param $id
      * @param $truc
      * @param $machin
      * @return void
      */
-    #[Route('/post/{id}/{truc}/{machin}', name: "francis", methods: ["GET"])]
-    public function showOne($id, $truc, $machin)
-    {
-        var_dump($id, $truc);
-    }
+    // #[Route('/post/{id}/{truc}/{machin}', name: "francis", methods: ["GET"])]
+    // public function showOne($id, $truc, $machin)
+    // {
+    //     var_dump($id, $truc);
+    // }
     
 }
