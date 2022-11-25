@@ -33,13 +33,7 @@ class SecurityController extends AbstractController
         }
 
         if ($user_db->getPassword() === $user["password"]) {
-			// Modifié par val. Normalement, elles doivent marcher. Je vous laisse tester.
-            $userId = $user_db["id"];
-			$userManager = new UserManager(new PDOFactory());
-        	$user = $userManager->getByUsername($_SESSION["user"]["nickname"]);
-			$_SESSION["user"]["id"] = $user->getId();
-			$_SESSION["user"]["nickname"] = $user->getNickname();
-			$_SESSION["user"]["admin"] = $user->getAdmin();
+            $_SESSION["user"] = $user_db;
             header("Location: /");
             exit;
         }
@@ -47,4 +41,11 @@ class SecurityController extends AbstractController
     //     header("Location: /?error=notfound");
     //     exit;
      }
+
+     #[Route('/deconnexion', name: "deconnexion", methods: ["GET"])]
+    
+     public function deconnexion(){
+        $_SESSION = null;
+        header("Location: /login");
+        }
 }
