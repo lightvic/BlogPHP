@@ -27,4 +27,11 @@ class PostManager extends BaseManager
         $query->execute();
 		
     }
+    	public function getPost($id)
+    {
+        $query = $this->pdo->prepare("SELECT * FROM post WHERE id = :id;");
+        $query->bindValue("id", $id, \PDO::PARAM_STR);
+        $query->execute();
+		
+    }
 }
