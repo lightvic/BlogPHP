@@ -27,4 +27,19 @@ class PostManager extends BaseManager
         $query->execute();
 		
     }
+	public function modifyPost($post)
+    {
+        $query = $this->pdo->prepare("UPDATE post SET content=:content WHERE `id`=:id;");
+        $query->bindValue("content", $post->getContent(), \PDO::PARAM_STR);
+		$query->bindValue("id", $post->getId(), \PDO::PARAM_INT);
+        $query->execute();
+		
+    }
+	public function deletePost($postId)
+    {
+        $query = $this->pdo->prepare("DELETE FROM post WHERE `id`=:id;");
+        $query->bindValue("id", $postId, \PDO::PARAM_INT);
+        $query->execute();
+		
+    }
 }

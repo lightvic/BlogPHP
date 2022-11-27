@@ -55,21 +55,26 @@ class PostController extends AbstractController
 		}
 		$this->home();
 	}
-    #[Route('/post/delete/{id}', name: "delete", methods: ["GET"])]
-    public function showOne($id, $truc, $machin)
+
+	#[Route('/post/modify/{id}', name: "modifyPost", methods: ["POST"])]
+	public function modifyPost($id)
+	{
+		$content = $_POST["content"];
+		if($content != null && $content !="")
+		{
+			$data = ['id'=>$id, 'content'=>$content];
+			$post = new Post($data);
+			$manager = new PostManager(new PDOFactory());
+			$newPost = $manager->modifyPost($post);
+		}
+		header("Location: /");
+	}
+
+    #[Route('/post/delete/{id}', name: "delete", methods: ["POST"])]
+    public function deletePost($id)
     {
-        var_dump($id, $truc);
+		$manager = new PostManager(new PDOFactory());
+		$manager->deletePost($id);
+		header("Location: /");
     }
-    /**
-     * @param $id
-     * @param $truc
-     * @param $machin
-     * @return void
-     */
-    // #[Route('/post/{id}/{truc}/{machin}', name: "francis", methods: ["GET"])]
-    // public function showOne($id, $truc, $machin)
-    // {
-    //     var_dump($id, $truc);
-    // }
-    
 }
