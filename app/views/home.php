@@ -1,11 +1,6 @@
 <?php /** @var App\Entity\User $user */?>
-</br>
-<?php
-var_dump($_SESSION);
-$user = $_SESSION["user"];
-?>
-<h1><?= $trucs; ?></h1>
-<h2><?= $machin; ?></h2>
+<h1><?= $titre1; ?></h1>
+<h2><?= $titre2; ?></h2>
 
 <form action="/deconnexion" method="get">
 	<button type="submit" id="submitPublication" >Deconnexion</button>
@@ -29,19 +24,15 @@ foreach ($posts as $post):
 	$authorId = $post->getUser();
 	$authorNickname = $users[$authorId - 1]->getNickname();
 ?>
-	<div id='post-<?= strval($post->getId()) ?>' style='border: 1px solid'>"
-	<!--  ligne à retirer pour la suite : ne sert qu'au debugging -->
-	Id du post : " <?= $post->getId() ?> - id de l'auteur :  <?= strval($authorId)?>
-	<h4>Auteur du post :  <?= $authorNickname ?> </h4> 
-	
-	<!-- Je dois créer une fonction qui me permet de récupérer le NOM de l'auteur d'un post -->
+	<div id='post-<?= strval($post->getId()) ?>' style='border: 1px solid'>
+	<h4><?= $authorNickname ?> </h4> 
 	<div> <?= $post->getContent() ?> </div>
 	<div> <?= $post->getDate() ?> </div>
 	
-	<?php if($_SESSION["user"]["nickname"] === $authorNickname): ?>
-		<button type='submit'>Modifier</button>";
+	<?php if($userNickname === $authorNickname): ?>
+		<button type='submit'>Modifier</button>
 	<?php endif ?>
-	<?php if($_SESSION["user"]["nickname"] === $authorNickname || $_SESSION["user"]['admin'] === 'true'): ?>
+	<?php if($userNickname === $authorNickname || $userIsAdmin === 'true'): ?>
 		<form action="/delete/<?= $post->getId() ?>" method="POST">
     		<input class="validate" type="submit" id="valider" value="Supprimer"/>
 		</form>

@@ -21,23 +21,21 @@ class PostController extends AbstractController
             header("Location: /login");
             exit;
         }
-		echo "Coucou du PostController";
         $manager = new PostManager(new PDOFactory());
         $posts = $manager->getAllPosts();
 
         $userManager = new UserManager(new PDOFactory());
         $users = $userManager->getAllUsers();
-        $admins = $userManager->getAllAdmins();
-		echo "</br>";
-		var_dump($admins);
-		echo "</br>";
+        $userNickname = $_SESSION["user"]->getNickname();
+        $userIsAdmin = $_SESSION["user"]->getAdmin();
 		
         $this->render("home.php", [
             "posts" => $posts,
             "users" => $users,
-            "admins" => $admins,
-            "trucs" => "Truc qui s'afichera dans le h1 de home.php",
-            "machin" => "2e truc qui s'affichera dans home.php"
+            "userNickname" => $userNickname,
+            "userIsAdmin" => $userIsAdmin,
+            "titre1" => "Blog de Victorien Guillerd, Valentine Lefebvre et Jean-Baptiste Migone",
+            "titre2" => "Accueil"
         ], "Titre de l'onglet");
     }
 
@@ -48,27 +46,12 @@ class PostController extends AbstractController
 		if($content != null && $content !="")
 		{
 			$userManager = new UserManager(new PDOFactory());
-        	$user = $userManager->getByUsername($_SESSION["user"]["nickname"]);
-			$userId = $user->getId();
-			$_SESSION["user"]["id"] = $userId;
-			$_SESSION["user"]["nickname"] = $user->getNickname();
-			$_SESSION["user"]["admin"] = $user->getAdmin();
+			$userId = $_SESSION["user"]->getId();
 						
 			$data = ['user'=>$userId, 'content'=>$content];
-			var_dump($data);
 			$post = new Post($data);
 			$manager = new PostManager(new PDOFactory());
 			$newPost = $manager->insertPost($post);
-			
-			// code de Victorien : Ne fonctionne pas car $_SESSION["user"] n'a pas de clé "id" pour l'instant.
-			// Je laisse quand-même le code ici pour plus tard.
-
-			// $user = $_SESSION["user"]["id"];		// d'office, pour l'instant, en attendant d'avoir la connexion
-			// $data = ['user'=>$user, 'content'=>$content];
-			// var_dump($data);
-			// $post = new Post($data);
-			// $manager = new PostManager(new PDOFactory());
-			// $newPost = $manager->insertPost($post);
 		}
 		$this->home();
 	}

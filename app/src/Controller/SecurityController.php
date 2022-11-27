@@ -38,9 +38,6 @@ class SecurityController extends AbstractController
             header("Location: /");
             exit;
         }
-
-    //     header("Location: /?error=notfound");
-    //     exit;
      }
 
      #[Route('/deconnexion', name: "deconnexion", methods: ["GET"])]
