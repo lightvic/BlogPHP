@@ -41,6 +41,10 @@ foreach ($posts as $post):
     		<input class="validate" type="submit" id="valider" value="Supprimer"/>
 		</form>
 	<?php endif ?>
+
+	<form action="/comment/<?= $post->getId() ?>" method="POST">
+    		<input class="validate" type="submit" id="valider" value="Voir le(s) commentaire(s)"/>
+		</form>
 	</div>
 	</br>
 	</br>
