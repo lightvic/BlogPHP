@@ -42,9 +42,10 @@ foreach ($posts as $post):
 		</form>
 	<?php endif ?>
 
-	<form action="/comment/<?= $post->getId() ?>" method="POST">
-    		<input class="validate" type="submit" id="valider" value="Voir le(s) commentaire(s)"/>
-		</form>
+	<!-- La zone de commentaires ne fonctionne malheureusement pas. -->
+	<!-- <form action="/comment/<?= $post->getId() ?>" method="POST">
+		<input class="validate" type="submit" id="valider" value="Voir le(s) commentaire(s)"/>
+	</form> -->
 	</div>
 	</br>
 	</br>
