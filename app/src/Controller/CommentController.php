@@ -15,34 +15,34 @@ class CommentController extends AbstractController
 
     public function home($id)
 	{
-
         $manager = new CommentManager(new PDOFactory());
         $comments = $manager->getAllComments($id);
 
         $this->render("comment.php", [
-            "comments" => $comments
+            "comments" => $comments,
+            "post_id" => $id
         ]);
     }
 
-    #[Route('/comment/{id}', name: "addomment", methods:["GET","POST"])]
+    #[Route('/comment/add/{id}', name: "addComment", methods:["POST"])]
 
-    public function addComment($post_id)
+    public function addComment($id)
 	{
+
         $content = $_POST["content"];
         if($content != null && $content !=""){
 			$userManager = new UserManager(new PDOFactory());
+            $userManager->getAllUsers();
             $userId =$_SESSION["user"]->getId();
 
-            $postManager = new PostManager(new PDOFactory());
-        	$postManager->getPost($post_id);
-			$postId =$_SESSION["user"]->getId();
 
-            $data = ['content'=>$content, 'user'=>$userId, 'post'=>$postId];
+            
+            $data = ['content'=>$content, 'user'=>$userId, 'post'=>$id];
             $comment= new Comment($data);
             $manager = new CommentManager(new PDOFactory());
             $newComment= $manager->insertComment($comment);
 
         }
-        $this->home($post_id);
+        header("Location: /");
     }
 }

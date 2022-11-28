@@ -40,7 +40,7 @@ class SignUpController extends AbstractController{
             
             $signup = $manager->insertUser($sign_up);
             $_SESSION["user"]=$NewUser;
-            header("Location: /");
+            header("Location: /login");
             exit;
         }
         else{

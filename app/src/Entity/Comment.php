@@ -5,10 +5,9 @@ namespace App\Entity;
 class Comment extends BaseEntity
 {
     private int $id;
-    private string $user;
+    private int $user;
     private string $content;
-    private string $post;
-    private string $parent_comment;
+    private int $post;
     public function getId(): int
     {
         return $this->id;
@@ -16,15 +15,6 @@ class Comment extends BaseEntity
     public function setId(int $id): Comment
     {
         $this->id = $id;
-        return $this;
-    }
-    public function getUser() : string
-    {
-        return $this->user;
-    }
-    public function setUser(string $user): Comment
-    {
-        $this->user = $user;
         return $this;
     }
     public function getContent() : string
@@ -36,13 +26,22 @@ class Comment extends BaseEntity
         $this->content = $content;
         return $this;
     }
-    public function getPost() : string
+    public function getPost() : int
     {
         return $this->post;
     }
-    public function setPost(string $post): Comment
+    public function setPost(int $post): Comment
     {
         $this->post = $post;
+        return $this;
+    }
+    public function getUser() : int
+    {
+        return $this->user;
+    }
+    public function setUser(int $user): Comment
+    {
+        $this->user = $user;
         return $this;
     }
     }
